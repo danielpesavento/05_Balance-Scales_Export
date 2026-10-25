@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8.EE.7 Balance Scales 5: Expert - Knowledge Check - Interactive Practice</title>
+<style>
+  :root { --navy:#1a3a5c; --navy-dark:#10253d; --gold:#c9a227; --gold-light:#e8d38a; --cream:#faf8f3; --green:#2e7d47; }
+  * { box-sizing: border-box; }
+  body { font-family: Calibri, "Segoe UI", Arial, sans-serif; background: var(--cream); color: var(--navy-dark); margin: 0; padding: 0 0 60px 0; }
+  header { background: var(--navy); color: var(--cream); padding: 24px 20px; text-align: center; border-bottom: 6px solid var(--gold); }
+  header h1 { margin: 0 0 6px 0; font-size: 1.5em; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+  .student-field { background: #fff; border: 2px solid var(--navy); border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; max-width: 500px; }
+  .student-field label { font-weight: bold; display: block; margin-bottom: 8px; color: var(--navy); }
+  .student-field input { width: 100%; padding: 10px; font-size: 1em; font-family: inherit; border: 1px solid #999; border-radius: 5px; }
+  .instructions-banner { background: #fff8e6; border-left: 4px solid var(--gold); padding: 12px 16px; margin-bottom: 20px; font-style: italic; font-size: 0.95em; }
+  .section-heading { background: var(--navy); color: var(--cream); padding: 10px 16px; border-radius: 8px 8px 0 0; border-bottom: 4px solid var(--gold); font-size: 1.2em; font-weight: bold; margin-top: 30px; }
+  .example-card { background: #fff; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px; padding: 18px 20px; }
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 16px; }
+  .problem-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 14px 16px; }
+  .problem-head { font-weight: bold; color: var(--navy); margin-bottom: 8px; }
+  .problem-head span { color: var(--gold); margin-right: 6px; }
+  .scales-wrap svg { width: 100%; height: auto; display: block; }
+  .ans-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff; }
+  .ans-label { font-size: 1.15em; font-weight: bold; }
+  .ans-right { display: flex; align-items: center; gap: 10px; }
+  .answer-input { width: 100px; padding: 8px; font-size: 1.1em; font-weight: bold; text-align: center; border: 1px solid #999; border-radius: 5px; font-family: inherit; }
+  .answer-input:focus { outline: 3px solid var(--gold-light); border-color: var(--gold); }
+  .badge { font-size: 0.85em; font-weight: bold; white-space: nowrap; }
+  .badge:empty { display: none; }
+  .badge.correct { color: #1f6b38; } .badge.incorrect { color: #a52f24; } .badge.blank { color: #666; font-weight: normal; font-style: italic; }
+  .ans-row.correct { background: #eaf6ee; border-color: var(--green); }
+  .ans-row.incorrect { background: #fbeceb; border-color: #b3382c; }
+  .answer-input[readonly] { background: transparent; border-color: transparent; cursor: default; }
+  .answer-input[readonly]:focus { outline: none; }
+  .submit-section { text-align: center; margin-top: 40px; padding: 20px; border-top: 2px solid var(--gold); }
+  button.submit-btn { background: var(--gold); color: var(--navy-dark); font-weight: bold; font-size: 1.05em; padding: 12px 28px; border: none; border-radius: 5px; cursor: pointer; font-family: inherit; }
+  button.submit-btn:hover { background: var(--gold-light); } button.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .status-msg { margin-top: 14px; font-weight: bold; color: var(--navy); font-size: 1.05em; }
+  .score-box { display: none; margin: 18px auto 0 auto; max-width: 420px; background: #fff8e6; border: 2px solid var(--gold); border-radius: 8px; padding: 14px 20px; color: var(--navy); }
+  .score-label { font-size: 0.95em; } .score-percent { font-size: 2.4em; font-weight: bold; line-height: 1.1; color: var(--navy); }
+  .score-detail { font-size: 1em; margin-top: 2px; } .score-note { font-size: 0.85em; color: #555; margin-top: 8px; }
+  .score-cols { margin-top: 10px; font-size: 0.95em; text-align: left; display: inline-block; } .score-cols div { margin: 2px 0; }
+  .shape-icon { vertical-align: middle; }
+  .stepper { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: center; }
+  .stepper-svg svg { width: 100%; height: auto; display: block; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
+  .stepper-count { font-size: 0.85em; font-weight: bold; color: var(--gold); letter-spacing: .3px; }
+  .stepper-title { font-size: 1.25em; font-weight: bold; color: var(--navy); margin: 4px 0 8px 0; }
+  .stepper-body { font-size: 1.05em; line-height: 1.45; min-height: 7em; }
+  .stepper-body .eq { display: inline-block; background: #fff8e6; border: 1px solid var(--gold-light); border-radius: 6px; padding: 2px 10px; font-weight: bold; margin: 2px 0; }
+  .stepper-btns { display: flex; gap: 10px; margin-top: 12px; }
+  button.nav-btn { background: var(--navy); color: #fff; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-family: inherit; font-size: 0.95em; }
+  button.nav-btn:hover { background: var(--navy-dark); }
+  button.nav-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  @media (max-width: 760px) { .stepper { grid-template-columns: 1fr; } }
+  .shape-key { background: #eef5fb; border: 1px solid #b9d3ea; border-radius: 8px; padding: 10px 14px; margin: 14px 0; font-size: 1.05em; }
+  .shape-key .shape-icon { margin: 0 4px; }
+
+  @media (max-width: 760px) { .problem-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header><h1>8.EE.7 Balance Scales 5: Expert - Knowledge Check - Interactive Practice</h1></header>
+<div class="container">
+  <div class="student-field"><label for="studentName">Student Name:</label><input type="text" id="studentName" placeholder="Type your full name"></div>
+  <div class="instructions-banner">Every scale is balanced, and the triangle is half of the square and the bowl is half of the circle. In this set, weights can be decimals or fractions. Type a decimal (like 2.5) or a fraction (like 1/3). Answers within 0.01 are accepted. Check the shape key, study the worked example, then solve the 10 problems. For each problem, first type the weight of one shape, then type the number that goes in place of the ?. Every answer is a number (a decimal or a fraction is fine). You can answer in any order, and you can come back and submit again after you answer more problems. When you submit, answered problems are marked right or wrong and locked.</div>
+<div id="keyBox"></div>
+
+  <div class="section-heading">Worked Example</div>
+  <div class="example-card"><div class="stepper" id="stepper"></div></div>
+
+  <div class="section-heading">Your Turn: Decimals and Fractions</div>
+  <div class="problem-grid" id="problemGrid"></div>
+
+  <div class="submit-section">
+    <button class="submit-btn" id="submitBtn" onclick="submitQuiz()">Submit Activity</button>
+    <div class="status-msg" id="statusMsg"></div>
+    <div class="score-box" id="scoreBox"></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   CONFIG: paste your deployed Google Apps Script Web App URL here
+   (deploy the companion Apps Script file for THIS quiz, not an earlier quiz)
+   The answer key is NOT stored in this file. Grading happens in the Apps Script.
+   ========================================================= */
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzbI6vJIaTISlypB8lpRu78Jq9XxOMA-7aFyC5y-ev3ZpMmQYeuHZtCC5d-4CRw3chq/exec";
+const TOTAL_TERMS = 20;
+const ALLOW_DECIMALS = true;   // true when answers can be decimals or fractions
+const ATTEMPT_ID = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + "-" + Math.random().toString(36).slice(2);
+
+/* ---------- shared balance-scale drawing + worked-example stepper ---------- */
+const SHAPE_STYLE = {
+  star:     { fill: "#D9A62E", text: "#10253d", label: "star" },
+  circle:   { fill: "#4A6FA5", text: "#ffffff", label: "circle" },
+  diamond:  { fill: "#2E7D5B", text: "#ffffff", label: "diamond" },
+  square:   { fill: "#B5483A", text: "#ffffff", label: "square" },
+  triangle: { fill: "#7A5C99", text: "#ffffff", label: "triangle" },
+  bowl:     { fill: "#4E9A9F", text: "#ffffff", label: "bowl" }
+};
+function shapeSVG(name, cx, cy, s, val) {
+  const st = SHAPE_STYLE[name], h = s / 2, common = `fill="${st.fill}" stroke="#10253d" stroke-width="2" stroke-linejoin="round"`;
+  let el = "";
+  if (name === "circle") el = `<circle cx="${cx}" cy="${cy}" r="${h}" ${common}/>`;
+  else if (name === "square") el = `<rect x="${cx - h}" y="${cy - h}" width="${s}" height="${s}" rx="3" ${common}/>`;
+  else if (name === "diamond") el = `<polygon points="${cx},${cy - h - 4} ${cx + h * 0.85},${cy} ${cx},${cy + h + 4} ${cx - h * 0.85},${cy}" ${common}/>`;
+  else if (name === "triangle") el = `<polygon points="${cx - h},${cy + h} ${cx + h},${cy + h} ${cx - h},${cy - h}" ${common}/>`;
+  else if (name === "bowl") el = `<path d="M ${cx - h} ${cy - h * 0.4} A ${h} ${h} 0 0 0 ${cx + h} ${cy - h * 0.4} Z" ${common}/>`;
+  else if (name === "star") {
+    const R = h + 3, r = R * 0.45, pts = [];
+    for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rad = i % 2 ? r : R; pts.push((cx + rad * Math.cos(a)).toFixed(1) + "," + (cy + rad * Math.sin(a) + 1).toFixed(1)); }
+    el = `<polygon points="${pts.join(" ")}" ${common}/>`;
+  }
+  if (val !== undefined && val !== null) {
+    // keep the number inside the shape: lower-left for the triangle, just below the flat edge for the bowl
+    let tx = cx, ty = cy + 5;
+    if (name === "triangle") { tx = cx - h * 0.3; ty = cy + h * 0.55; }
+    if (name === "bowl") { ty = cy + 3; }
+    const fs = (name === "triangle" || name === "bowl") ? (String(val).length > 3 ? 9 : 11) : (String(val).length > 3 ? 11 : 15);
+    el += `<text x="${tx}" y="${ty}" text-anchor="middle" font-size="${fs}" font-weight="700" fill="${st.text}">${val}</text>`;
+  }
+  return el;
+}
+function itemText(it) { return (it.t !== undefined && it.t !== null) ? String(it.t) : String(it.n); }
+function itemWidth(it) { return typeof it === "string" ? 40 : (it.q ? 30 : itemText(it).length * 17 + 10); }
+function panSVG(items, cx, panY, vals) {
+  const total = items.reduce((a, it) => a + itemWidth(it), 0);
+  let x = cx - total / 2, out = "";
+  items.forEach(it => {
+    const w = itemWidth(it);
+    if (typeof it === "string") out += shapeSVG(it, x + w / 2 - 3, panY - 22, 34, vals ? vals[it] : undefined);
+    else if (it.q) {
+      const known = vals && vals["?"] !== undefined;
+      out += `<text x="${x + w / 2}" y="${panY - 8}" text-anchor="middle" font-size="${known ? 30 : 34}" font-weight="700" fill="${known ? "#2e7d47" : "#10253d"}">${known ? vals["?"] : "?"}</text>`;
+    } else out += `<text x="${x + w / 2}" y="${panY - 8}" text-anchor="middle" font-size="30" font-weight="700" fill="#10253d">${itemText(it)}</text>`;
+    x += w;
+  });
+  return out;
+}
+function describeSide(items) {
+  const parts = []; const counts = {}; let nums = [];
+  items.forEach(it => { if (typeof it === "string") counts[it] = (counts[it] || 0) + 1; else if (it.q) nums.push("a question mark"); else nums.push(itemText(it)); });
+  Object.keys(counts).forEach(k => parts.push(counts[k] + " " + k + (counts[k] > 1 ? "s" : "")));
+  return parts.concat(nums).join(" and ");
+}
+function drawScales(scales, opts) {
+  opts = opts || {};
+  const vals = opts.vals, hl = (opts.highlight === undefined) ? null : opts.highlight;
+  let svg = `<svg viewBox="0 0 520 362" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${scales.map((s, i) => `Scale ${i + 1}: ${describeSide(s.left)} balance ${describeSide(s.right)}.`).join(" ")}" font-family="Calibri, 'Segoe UI', Arial, sans-serif">`;
+  scales.forEach((sc, i) => {
+    const oy = 8 + i * 118, panY = oy + 50, dim = (hl !== null && hl !== i);
+    svg += `<g opacity="${dim ? 0.3 : 1}">`;
+    if (hl === i) svg += `<rect x="6" y="${oy - 2}" width="508" height="104" rx="10" fill="#fff8e6" stroke="#c9a227" stroke-width="2.5"/>`;
+    svg += panSVG(sc.left, 120, panY, vals) + panSVG(sc.right, 400, panY, vals);
+    svg += `<line x1="15" y1="${panY}" x2="225" y2="${panY}" stroke="#10253d" stroke-width="4" stroke-linecap="round"/>`;
+    svg += `<line x1="295" y1="${panY}" x2="505" y2="${panY}" stroke="#10253d" stroke-width="4" stroke-linecap="round"/>`;
+    svg += `<polyline points="120,${panY} 120,${oy + 74} 400,${oy + 74} 400,${panY}" fill="none" stroke="#10253d" stroke-width="3"/>`;
+    svg += `<polygon points="246,${oy + 94} 274,${oy + 94} 260,${oy + 76}" fill="#4a6fa5" stroke="#10253d" stroke-width="2"/>`;
+    svg += `</g>`;
+  });
+  return svg + `</svg>`;
+}
+function shapeIcon(name, size) {
+  size = size || 30;
+  return `<svg class="shape-icon" width="${size}" height="${size}" viewBox="0 0 40 40" role="img" aria-label="${name}">${shapeSVG(name, 20, 20, 28)}</svg>`;
+}
+/* worked-example stepper */
+function initStepper(hostId, ex) {
+  const host = document.getElementById(hostId);
+  host.innerHTML = `<div class="stepper-svg" id="${hostId}-svg"></div>
+    <div class="stepper-text"><div class="stepper-count" id="${hostId}-count"></div><div class="stepper-title" id="${hostId}-title"></div><div class="stepper-body" id="${hostId}-body"></div>
+    <div class="stepper-btns"><button type="button" class="nav-btn" id="${hostId}-back">&larr; Back</button><button type="button" class="nav-btn" id="${hostId}-next">Next step &rarr;</button></div></div>`;
+  let i = 0;
+  function render() {
+    const st = ex.steps[i];
+    document.getElementById(hostId + "-svg").innerHTML = drawScales(ex.scales, { highlight: st.highlight, vals: st.vals });
+    document.getElementById(hostId + "-count").textContent = "Step " + (i + 1) + " of " + ex.steps.length;
+    document.getElementById(hostId + "-title").textContent = st.title;
+    document.getElementById(hostId + "-body").innerHTML = st.text;
+    document.getElementById(hostId + "-back").disabled = (i === 0);
+    document.getElementById(hostId + "-next").disabled = (i === ex.steps.length - 1);
+  }
+  document.getElementById(hostId + "-back").onclick = () => { if (i > 0) { i--; render(); } };
+  document.getElementById(hostId + "-next").onclick = () => { if (i < ex.steps.length - 1) { i++; render(); } };
+  render();
+}
+
+function keyHTML() {
+  return '<div class="shape-key"><strong>Shape key:</strong> ' + shapeIcon("triangle") + ' is half of ' + shapeIcon("square") +
+         ' &nbsp;&nbsp;|&nbsp;&nbsp; ' + shapeIcon("bowl") + ' is half of ' + shapeIcon("circle") + '</div>';
+}
+
+
+const SHAPE_KEY = true;   // shows the "triangle is half of the square" key when half shapes are used
+const EXAMPLE = {"scales": [{"left": ["diamond", "diamond"], "right": [{"n": 5}]}, {"left": ["diamond", "circle"], "right": [{"n": 8}]}, {"left": ["circle", "circle", "circle"], "right": [{"q": true}]}], "steps": [{"highlight": null, "vals": null, "title": "Read the scales", "text": "Every scale is <strong>balanced</strong>, so the left side weighs exactly the same as the right side. We want to find the <strong>?</strong> on the last scale. Weights can be decimals or fractions. Remember the shape key: the triangle is half of the square, and the bowl is half of the circle."}, {"highlight": 0, "vals": {"diamond": "2.5"}, "title": "Find the diamond", "text": "Top scale: 2 diamonds weigh 5. Split 5 into 2 equal parts: 5 ÷ 2 = <span class='eq'>2.5</span>. One diamond weighs 2.5. Answers can be decimals!"}, {"highlight": 1, "vals": {"diamond": "2.5", "circle": "5.5"}, "title": "Find the circle", "text": "Middle scale: a diamond and a circle weigh 8. 8 − 2.5 = <span class='eq'>5.5</span>. One circle weighs 5.5."}, {"highlight": 2, "vals": {"diamond": "2.5", "circle": "5.5", "?": "16.5"}, "title": "Answer the question", "text": "The last scale has 3 circles: 3 × 5.5 = <span class='eq'>16.5</span>."}, {"highlight": null, "vals": {"diamond": "2.5", "circle": "5.5", "?": "16.5"}, "title": "Check your work", "text": "The ? is <strong>16.5</strong>. Check the scales with the weights in place: top scale: 5 = 5; middle scale: 8 = 8; bottom scale: 16.5. Every scale still balances."}]};
+const problems = [{"scales": [{"left": ["diamond", "diamond"], "right": [{"n": 3}]}, {"left": ["diamond", "circle"], "right": [{"n": 7}]}, {"left": ["circle", "circle"], "right": [{"q": true}]}], "first": "diamond"}, {"scales": [{"left": ["star", "star"], "right": [{"n": 5}]}, {"left": ["star", "square"], "right": [{"n": 9}]}, {"left": ["square", "square"], "right": [{"q": true}]}], "first": "star"}, {"scales": [{"left": ["diamond", "diamond"], "right": [{"n": 7}]}, {"left": ["diamond", "circle"], "right": [{"n": 10}]}, {"left": ["circle", "circle", "circle"], "right": [{"q": true}]}], "first": "diamond"}, {"scales": [{"left": ["diamond", "diamond", "diamond", "diamond"], "right": [{"n": 52}]}, {"left": ["diamond", "diamond", "diamond", "square", "square"], "right": [{"n": 40}]}, {"left": ["square"], "right": [{"q": true}]}], "first": "diamond"}, {"scales": [{"left": ["star", "star", "star"], "right": [{"n": 24}]}, {"left": ["star", "star", "circle", "circle"], "right": [{"n": 19}]}, {"left": ["circle"], "right": [{"q": true}]}], "first": "star"}, {"scales": [{"left": ["star", "star", "star"], "right": [{"n": 1}]}, {"left": [{"n": 1}], "right": ["square", "star"]}, {"left": ["square", "triangle"], "right": [{"q": true}]}], "first": "star"}, {"scales": [{"left": ["star", "star", "star", "star", "star"], "right": [{"n": 1}]}, {"left": [{"n": 1}], "right": ["square", "star"]}, {"left": ["square", "triangle"], "right": [{"q": true}]}], "first": "star"}, {"scales": [{"left": ["square", "square"], "right": [{"n": 10}]}, {"left": ["square", "triangle"], "right": ["circle", "circle", "circle"]}, {"left": ["bowl"], "right": [{"q": true}]}], "first": "square"}, {"scales": [{"left": ["square", "square"], "right": [{"n": 6}]}, {"left": ["square", "triangle"], "right": ["circle", "circle", "circle"]}, {"left": ["bowl"], "right": [{"q": true}]}], "first": "square"}, {"scales": [{"left": ["square", "square"], "right": [{"n": 14}]}, {"left": ["square", "triangle"], "right": ["circle", "circle", "circle"]}, {"left": ["bowl"], "right": [{"q": true}]}], "first": "square"}];
+
+// Terms 1-20: for problem p, term 2p-1 is the weight of the first clue shape, term 2p is the ?
+const terms = [];
+problems.forEach((p, i) => { terms.push({ id: 2 * i + 1, kind: "shape", p: i }); terms.push({ id: 2 * i + 2, kind: "q", p: i }); });
+const columnMeta = [
+  { head: "Clue shape weights", ids: terms.filter(t => t.kind === "shape").map(t => t.id) },
+  { head: "Answers to the ?", ids: terms.filter(t => t.kind === "q").map(t => t.id) }
+];
+const alreadySubmitted = {};
+terms.forEach(t => { alreadySubmitted[t.id] = false; });
+
+function buildActivity() {
+  const grid = document.getElementById("problemGrid");
+  problems.forEach((p, i) => {
+    const idA = 2 * i + 1, idB = 2 * i + 2;
+    const row = (id, label, aria) => `
+      <div class="ans-row" id="row-${id}">
+        <div class="ans-label">${label}</div>
+        <div class="ans-right"><span class="badge" id="badge-${id}"></span>
+          <input type="text" class="answer-input" id="input-${id}" maxlength="7" inputmode="${ALLOW_DECIMALS ? "decimal" : "numeric"}" placeholder="?" autocomplete="off" aria-label="${aria}" oninput="onAnswerEdited(${id})"></div>
+      </div>`;
+    const card = document.createElement("div");
+    card.className = "problem-card";
+    card.innerHTML = `<div class="problem-head"><span>Problem ${i + 1}</span></div>
+      <div class="scales-wrap">${drawScales(p.scales)}</div>
+      ${row(idA, `Weight of one ${shapeIcon(p.first)} =`, `Problem ${i + 1}: weight of one ${p.first}`)}
+      ${row(idB, `<span style="font-size:1.2em">?</span> =`, `Problem ${i + 1}: value of the question mark`)}`;
+    grid.appendChild(card);
+  });
+}
+
+function getSelected(id) { const el = document.getElementById("input-" + id); return el ? el.value.trim() : ""; }
+
+function onAnswerEdited(id) {
+  const input = document.getElementById("input-" + id);
+  const cleaned = ALLOW_DECIMALS ? input.value.replace(/[^0-9./]/g, "") : input.value.replace(/[^0-9]/g, "");
+  if (cleaned !== input.value) input.value = cleaned;
+  alreadySubmitted[id] = false;
+  const badge = document.getElementById("badge-" + id);
+  if (badge && badge.classList.contains("blank")) { badge.className = "badge"; badge.textContent = ""; }
+}
+
+// Marks every answer using the statuses the script returns ("correct", "incorrect", "blank").
+// Answered boxes are locked. The correct answer is never shown. To try again, refresh the page.
+function applyResults(result) {
+  const st = result.statuses;
+  if (!Array.isArray(st)) return false;
+  terms.forEach(t => {
+    const s = st[t.id - 1];
+    const row = document.getElementById("row-" + t.id), input = document.getElementById("input-" + t.id), badge = document.getElementById("badge-" + t.id);
+    row.classList.remove("correct", "incorrect");
+    badge.className = "badge"; badge.textContent = "";
+    if (s === "correct" || s === "incorrect") {
+      row.classList.add(s); badge.classList.add(s);
+      badge.textContent = s === "correct" ? "\u2713 Correct" : "\u2717 Incorrect";
+      input.readOnly = true;
+    } else { badge.classList.add("blank"); badge.textContent = "Not answered"; }
+  });
+  return true;
+}
+
+function showScore(result) {
+  const box = document.getElementById("scoreBox");
+  const total = Number(result.total) || TOTAL_TERMS, correct = Number(result.score) || 0, answeredCount = Number(result.answered) || 0;
+  const pct = Math.round((correct / total) * 100);
+  const st = Array.isArray(result.statuses) ? result.statuses : null;
+  let cols = "", anyWrong = false;
+  if (st) {
+    cols = '<div class="score-cols">' + columnMeta.map(c => `<div><strong>${c.head}:</strong> ${c.ids.filter(id => st[id - 1] === "correct").length} of ${c.ids.length} correct</div>`).join("") + "</div>";
+    anyWrong = st.some(s => s === "incorrect");
+  }
+  let note = "";
+  if (answeredCount < total) note += `<div class="score-note">Unanswered problems count as incorrect until you answer them.</div>`;
+  if (anyWrong) note += `<div class="score-note">Incorrect answers are locked. To try the whole activity again, refresh this page.</div>`;
+  box.innerHTML = `<div class="score-label">Your score</div><div class="score-percent">${pct}%</div><div class="score-detail">${correct} of ${total} correct</div>${cols}${note}`;
+  box.style.display = "block";
+}
+
+function submitQuiz() {
+  const name = document.getElementById("studentName").value.trim();
+  const statusMsg = document.getElementById("statusMsg"), scoreBox = document.getElementById("scoreBox");
+  if (!name) { alert("Please enter your name before submitting."); return; }
+  const answers = terms.map(t => { if (alreadySubmitted[t.id]) return ""; const v = getSelected(t.id); return v ? v : ""; });
+  const newlyIncludedIds = terms.filter(t => !alreadySubmitted[t.id] && getSelected(t.id)).map(t => t.id);
+  if (newlyIncludedIds.length === 0) { alert("You haven't answered any new problems since your last submission. Answer at least one before submitting again."); return; }
+  if (GAS_WEB_APP_URL.indexOf("PASTE_YOUR") === 0) { statusMsg.textContent = "This quiz is not connected to its Apps Script yet. Paste the Web App URL into GAS_WEB_APP_URL."; return; }
+  const payload = { timestamp: new Date().toISOString(), student: name, attemptId: ATTEMPT_ID, answers: answers };
+  const submitBtn = document.getElementById("submitBtn");
+  submitBtn.disabled = true; statusMsg.textContent = "Submitting..."; scoreBox.style.display = "none";
+  const requestOptions = { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) };
+  function markSent() { newlyIncludedIds.forEach(id => { alreadySubmitted[id] = true; }); submitBtn.disabled = false; }
+  fetch(GAS_WEB_APP_URL, requestOptions).then(r => r.json()).then(result => {
+    if (!result || result.ok !== true) throw new Error((result && result.error) || "Script error");
+    markSent(); statusMsg.textContent = "Submitted! Thank you, " + name + "."; applyResults(result); showScore(result);
+  }).catch(() => {
+    // Fallback: resend without reading the reply. The script merges repeat answers safely.
+    fetch(GAS_WEB_APP_URL, Object.assign({ mode: "no-cors" }, requestOptions)).then(() => {
+      markSent(); statusMsg.textContent = "Submitted! Thank you, " + name + ". Your results could not be shown right now, but your answers were sent.";
+    }).catch(() => { statusMsg.textContent = "Submission may have failed - check your connection and try again."; submitBtn.disabled = false; });
+  });
+}
+
+if (SHAPE_KEY) document.getElementById("keyBox").innerHTML = keyHTML();
+initStepper("stepper", EXAMPLE);
+buildActivity();
+</script>
+</body>
+</html>
